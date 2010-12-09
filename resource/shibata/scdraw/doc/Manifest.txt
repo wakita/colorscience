@@ -1,0 +1,77 @@
+Manifest.txt:	このファイル
+Readme.txt:	automaticColoringプログラムの解説と使い方
+Install.txt:	automaticColoringのコンパイル、実行方法
+src:		automaticColoring実行に必要なファイル集
+
+./src:
+automaticColoring:	描画ソフトのソース集
+shimamura:		SmartColorのソース集
+icon:			描画ソフトのGUIに用いるアイコン集
+
+./src/automaticColoring:
+AutomaticColoring.java:	automaticColoringの実行クラス
+GraphicsPanel.java:	図形を描画するキャンバスのクラス
+MouseListener.java:	各種イベントのリスナークラス
+ACShape.java:		描画される図形のクラス
+
+./src/icon:
+character.gif:	ツールバーの、文字ボタン
+clear.gif:	ツールバーの、クリアボタン
+coloration.gif:	ツールバーの、自動配色開始ボタン
+copy.gif:	ツールバーの、コピーボタン
+cut.gif:	ツールバーの、切り取りボタン
+Ellipse.gif:	ツールバーの、楕円形ボタン
+fillcolor.gif:	ツールバーの、図形内部色設定ボタン
+line.gif:	ツールバーの、直線ボタン
+linecolor.gif:	ツールバーの、図形の線色設定ボタン
+lock.gif:	ツールバーの、自然性設定ボタン
+palette.gif:	ツールバーの、パレット作成ボタン
+paste.gif:	ツールバーの、貼り付けボタン
+polygon.gif:	ツールバーの、多角形ボタン
+rectangle.gif:	ツールバーの、四角形ボタン
+roundrect.gif:	ツールバーの、角丸四角形ボタン
+select.gif:	ツールバーの、図形選択ボタン
+spring.gif:	ツールバーの、識別性設定ボタン
+thick.gif:	ツールバーの、線を太くするボタン
+thin.gif:	ツールバーの、戦を細くするボタン
+trash.gif:	ツールバーの、図形消去ボタン
+
+./src/shimamura:
+! 以下のファイルは嶋村さん作成につき、細かな説明はわかりません．
+AreaOBJ.java
+Bitmap.java
+BitmapCanvas.java
+ClusterBinaryTree.java
+ClusterPoint.java
+ClusterReprPoint.java
+IromieGUI.java
+Iromie.java
+IntVector.java
+EquiEnergySpectrum.java
+DichromatPlaneView.java
+DichromatPlaneCenter.java
+Dichromat.java
+DesiredKeepability.java
+DesiredDistinguishability.java
+DesiredContrast.java
+Desire.java
+CompoundDesire.java
+ColorOBJ.java
+XYZ.java
+Vector3D.java
+TestMinimizeParameter.java
+SRGBdash.java
+SRGB.java
+SimulatedAnnealing.java
+SimpleDesire.java
+RGB.java
+PixelBinaryTree.java
+NVector.java
+NNMatrix.java
+NewtonBottleNeck.java
+Newton.java
+MinimizeExperiment.java
+Matrix3X3.java
+Luv1976.java
+LMS.java
+Lab.java
