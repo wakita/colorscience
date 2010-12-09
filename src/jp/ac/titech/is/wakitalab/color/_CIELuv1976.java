@@ -9,7 +9,7 @@ package jp.ac.titech.is.wakitalab.color;
  * @version Experimental, 2005/11/08
  */
 abstract class _CIELuv1976 extends UniformColorSpace {
-	
+
     /** L<sup>*</sup> (lightness) component */
     public double L;
 
@@ -18,18 +18,20 @@ abstract class _CIELuv1976 extends UniformColorSpace {
 
     /** v<sup>*</sup> component */
     public double v;
-    
+
     public String toString() {
-    	return "Luv1976(" + L + ", " + u + ", " + v + ")";
+        return "Luv1976(" + L + ", " + u + ", " + v + ")";
     }
 
     protected void _initialize(XYZ c, XYZ w) {
-    	convertFrom(c, w);
+        convertFrom(c, w);
     }
 
-	public CIELuv1976 CIELuv1976() { return (CIELuv1976)this; }
-    
-	protected void convertFrom(XYZ c, XYZ w) {
+    public CIELuv1976 CIELuv1976() {
+        return (CIELuv1976) this;
+    }
+
+    protected void convertFrom(XYZ c, XYZ w) {
         L = f(c.Y, w.Y);
 
         double b = c.X + 15 * c.Y + 3 * c.Z;
@@ -39,13 +41,13 @@ abstract class _CIELuv1976 extends UniformColorSpace {
 
         u = 13 * L * (u - u_w);
         v = 13 * L * (v - v_w);
-	}
-	
-	protected void convertFrom(XYZ c) {
-		convertFrom(c, nominalWhite);
-	}
-	
-	protected void convertTo(XYZ c, XYZ w) {
+    }
+
+    protected void convertFrom(XYZ c) {
+        convertFrom(c, nominalWhite);
+    }
+
+    protected void convertTo(XYZ c, XYZ w) {
         double Y = Color.luminance(L, w.Y);
         double b_w = w.X + 15 * w.Y + 3 * w.Z;
         double u_w = 4 * w.X / b_w, v_w = 4 * w.Y / b_w;
@@ -54,9 +56,9 @@ abstract class _CIELuv1976 extends UniformColorSpace {
         c.X = 9 * u1 / (4 * v1) * Y;
         c.Y = Y;
         c.Z = (12 - 3 * u1 - 20 * v1) / (4 * v1) * Y;
-	}
+    }
 
-	protected void convertTo(XYZ c) {
-		convertTo(c, nominalWhite);
-	}
+    protected void convertTo(XYZ c) {
+        convertTo(c, nominalWhite);
+    }
 }
