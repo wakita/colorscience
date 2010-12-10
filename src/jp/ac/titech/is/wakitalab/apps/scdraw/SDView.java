@@ -1,16 +1,9 @@
 package jp.ac.titech.is.wakitalab.apps.scdraw;
 
-import java.awt.BorderLayout;
-import java.awt.Container;
-import java.awt.FlowLayout;
-import java.awt.event.ActionListener;
+import java.awt.*;
+import java.awt.event.*;
 
-import javax.swing.AbstractButton;
-import javax.swing.ButtonGroup;
-import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
-import javax.swing.JToggleButton;
-import javax.swing.JToolBar;
+import javax.swing.*;
 
 public class SDView {
 	public static void addToolButton(JToolBar toolbar, ButtonGroup bg, ActionListener listener, String label, String tooltip) {
@@ -20,17 +13,17 @@ public class SDView {
 		bg.add(b);
 		toolbar.add(b);
 	}
-	
+
 	private SDEditorModel model = new SDEditorModel();
-	
+
 	SDView(Container topPane) {
 		JTabbedPane tabbedPane = new JTabbedPane();
 		topPane.add(tabbedPane);
-		
+
 		{
 			JPanel panel = new JPanel(false);
 			panel.setLayout(new BorderLayout());
-			
+
 			JPanel toolbar = new JPanel();
 			toolbar.setLayout(new FlowLayout(FlowLayout.LEFT));
 			panel.add(toolbar, BorderLayout.NORTH);
@@ -48,10 +41,10 @@ public class SDView {
 
 			tabbedPane.addTab("Drawing", panel);
 		}
-		
+
 		JPanel colorPanel = new JPanel(false);
 		tabbedPane.addTab("Color", colorPanel);
-		
+
 		JPanel analyzePanel = new JPanel(false);
 		tabbedPane.addTab("Analyze", analyzePanel);
 	}
