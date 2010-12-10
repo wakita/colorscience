@@ -24,13 +24,15 @@ public abstract class UniformColorSpace extends Color {
      */
 
     public XYZ XYZ() {
+        /* nominalWhite は Initialize クラス経由で初期化しなければならない */
+        assert nominalWhite != null;
         return XYZ(nominalWhite);
     }
-	
+
 	abstract protected void convertTo(XYZ c, XYZ w);
-	
+
 	abstract protected void convertFrom(XYZ c, XYZ w);
-	
+
 	protected void convertFrom(XYZ c) {
 		convertFrom(c, nominalWhite);
 	}
