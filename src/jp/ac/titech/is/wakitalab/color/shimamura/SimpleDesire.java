@@ -1,0 +1,1 @@
+/* * 作成日: 2004/07/01 * */package jp.ac.titech.is.wakitalab.color.shimamura;/** * @author shinamu1 */public interface SimpleDesire extends Desire{}

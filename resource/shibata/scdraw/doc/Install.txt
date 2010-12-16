@@ -1,0 +1,20 @@
+*********************************************
+	automaticColoring初期設定方法
+*********************************************
+
+3つのディレクトリ、automaticColoring, icon, shimamuraを同一ディレクトリに置きます．
+
+次に、shimamura内のjavaファイルをまずコンパイルします．
+
+\shimamura>javac *.java
+
+続いて、automaticColoring内のjavaファイルをコンパイルします.
+
+\automaticColoring>javac *.java
+
+これで、描画ソフトが実行可能になります．
+次のようにして実行してください.
+
+\automaticColoring>java automaticColoring
+
+
