@@ -1,6 +1,8 @@
 package jp.ac.titech.is.wakitalab.color;
 
 public final class SRGB extends _SRGB {
+    /* _R, G, B must be between 0 and 1_ */
+
     public SRGB(double R, double G, double B) {
         _initialize(R, G, B);
     }
