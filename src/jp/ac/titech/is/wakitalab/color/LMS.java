@@ -26,15 +26,16 @@ public class LMS extends _LMS {
 			wavelen += step;
 		}
 	}
-	
+
 	public String toString() {
 		return "LMS(" + L + ", " + M + ", " + S + ")";
 	}
-	
+
 	public LMS(XYZ c) {
 		convertFrom(c);
 	}
 
+	/* _ Color.javaでabstractになっているメソッドをここで実装している。Color <- SimpleColorSpace <- _LMS <- LMS _ */
 	public XYZ XYZ() {
 		return RGB().XYZ();
 	}

@@ -14,7 +14,7 @@ public abstract class AbstractRGB extends SimpleColorSpace {
     /** Blue component */
 
     public /* final */ double B;
-    
+
     protected void _initialize(double R, double G, double B) {
         this.R = R;
         this.G = G;
@@ -22,13 +22,13 @@ public abstract class AbstractRGB extends SimpleColorSpace {
     }
 
     protected abstract String shortName();
-    
+
     public String toString() {
         return String.format("%s(%1.2f, %1.2f, %1.2f)", shortName(), R, G, B);
     }
-    
+
     static private final double[] v = new double[3];
-    
+
     protected void convertFrom(Matrix fromXYZ, XYZ xyz) {
         fromXYZ.times(xyz.X, xyz.Y, xyz.Z, v);
         _initialize(v[0], v[1], v[2]);

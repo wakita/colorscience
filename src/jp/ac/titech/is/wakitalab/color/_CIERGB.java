@@ -4,6 +4,7 @@ import jp.ac.titech.is.wakitalab.math.Matrix;
 
 abstract class _CIERGB extends AbstractRGB {
 
+    /* _ XYZからRGBへの変換行列 _ */
     static final Matrix fromXYZ = new Matrix(+0.41846, -0.15860, -0.08283,
             -0.09117, +0.25243, +0.01571, +0.00092, -0.00255, +0.17860);
     static final Matrix toXYZ = fromXYZ.inverse();
