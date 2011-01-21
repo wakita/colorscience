@@ -40,10 +40,10 @@ abstract class _LMS extends SimpleColorSpace {
     	private static final Matrix fromXYZ = toXYZ.inverse();
 */
 
-      private static final Matrix fromXYZ = new Matrix(0.236157, 0.826427, -0.045710,
-                           -0.431117, 1.206922, 0.0090020,
-                            0.040557, -0.019683, 0.486195);
-      private static final Matrix toXYZ = fromXYZ.inverse();
+    private static final Matrix fromXYZ = new Matrix(0.236157, 0.826427, -0.045710,
+            -0.431117, 1.206922, 0.0090020,
+            0.040557, -0.019683, 0.486195);
+    private static final Matrix toXYZ = fromXYZ.inverse();
 
 
     private static final Matrix toRGB =

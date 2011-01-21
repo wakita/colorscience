@@ -1,7 +1,5 @@
 package jp.ac.titech.is.wakitalab.math;
 
-import static java.lang.System.*;
-
 import static org.junit.Assert.*;
 
 import java.util.*;
