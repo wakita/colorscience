@@ -33,9 +33,9 @@ public class MatrixTest {
 		double cos = Math.cos(rad), sin = Math.sin(rad);
 		Matrix rot = new Matrix(cos, -sin, 0, sin, cos, 0, 0, 0, 1);
 		
-		Matrix r = Matrix.I;
+		Matrix r = m;
 		for (int i = 0; i < N; i++) r = r.times(rot);
-		assertTrue(r.equals(Matrix.I));
+		assertTrue(r.equals(m));
 	}
 	
 	@Test public void inverse() {
