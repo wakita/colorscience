@@ -1,5 +1,7 @@
 package jp.ac.titech.is.wakitalab.color;
 
+import static jp.ac.titech.is.wakitalab.math.M.*;
+
 /**
  * $Id: LMS.java,v 1.4 2003/12/03 06:40:23 wakita Exp $
  * Created on 2003/09/24
@@ -26,6 +28,14 @@ public class LMS extends _LMS {
 			wavelen += step;
 		}
 	}
+	
+	private final boolean _eq(double x, double y) {
+	    return jp.ac.titech.is.wakitalab.math.M.equals(x, y);
+	}
+	
+	public boolean equals(LMS c) {
+	    return _eq(L, c.L) && _eq(M, c.M) && _eq(S, c.S);
+	}
 
 	public String toString() {
 		return "LMS(" + L + ", " + M + ", " + S + ")";
@@ -37,6 +47,9 @@ public class LMS extends _LMS {
 
 	/* _ Color.javaでabstractになっているメソッドをここで実装している。Color <- SimpleColorSpace <- _LMS <- LMS _ */
 	public XYZ XYZ() {
-		return RGB().XYZ();
+		// return RGB().XYZ();
+	    XYZ c = new XYZ();
+	    convertTo(c);
+	    return c;
 	}
 }
