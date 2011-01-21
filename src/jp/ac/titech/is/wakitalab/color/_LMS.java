@@ -23,14 +23,28 @@ abstract class _LMS extends SimpleColorSpace {
     //              -0.155, 0.457, 0.0329,
     //              0.00000, 0.00000, 0.016);
      * の逆行列である。（上はXYZからLMSへの変換行列。toXYZにはLMSからXYZへの変換行列をセットする。）_
+     *
+     * Color Vision and Colorimetry, P146 (8.6)
+     *     - Daniel Malacara
+     *     fromXYZ = (0.236157, 0.826427, -0.045710
+     *                -0.431117, 1.206922, 0.0090020
+     *                0.040557, -0.019683, 0.486195);
      */
+
     // ORIGINAL
-    	private static final Matrix toXYZ =
+ /*   	private static final Matrix toXYZ =
     		new Matrix(2.76888, 1.75175, 1.13016,
     			  1.00000, 4.59070, 0.06010,
     		  	  0.00000, 0.05651, 5.59427);
 
     	private static final Matrix fromXYZ = toXYZ.inverse();
+*/
+
+    private static final Matrix fromXYZ = new Matrix(0.236157, 0.826427, -0.045710,
+            -0.431117, 1.206922, 0.0090020,
+            0.040557, -0.019683, 0.486195);
+    private static final Matrix toXYZ = fromXYZ.inverse();
+
 
     private static final Matrix toRGB =
         new Matrix(0.214808, 0.751035, 0.045156,
