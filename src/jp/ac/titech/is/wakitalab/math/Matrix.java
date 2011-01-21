@@ -24,6 +24,9 @@ public class Matrix {
         t31 = v31; t32 = v32; t33 = v33;
     }
     
+    public static final Matrix O = new Matrix(0, 0, 0, 0, 0, 0, 0, 0, 0);
+    public static final Matrix I = new Matrix(1, 0, 0, 0, 1, 0, 0, 0, 1);
+    
     public String toString() {
     	return  "{ " + t11 + ", " + t12 + ", " + t13 + "\n  "
                      + t21 + ", " + t22 + ", " + t23 + ",\n  "
