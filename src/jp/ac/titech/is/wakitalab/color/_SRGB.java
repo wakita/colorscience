@@ -25,44 +25,36 @@ abstract class _SRGB extends SimpleColorSpace {
         return String.format("SRGB(%1.2f, %1.2f, %1.2f)", R, G, B);
     }
 
-    //    public XYZ XYZ() {
-    //        return null;
-    //    }
-    /* _http://www.enjoy.ne.jp/~k-ichikawa/CIEXYZ_RGB.html より_ */
-    private static final Matrix toXYZ =
-        new Matrix(0.4124,  0.3576, 0.1805,
-                0.2126, 0.7152, 0.0722,
-                0.0193, 0.1192, 0.9505);
-
-    private static final Matrix fromXYZ = toXYZ.inverse();
+    //    //    public XYZ XYZ() {
+    //    //        return null;
+    //    //    }
+    //    /* _http://www.enjoy.ne.jp/~k-ichikawa/CIEXYZ_RGB.html より_ */
+    //    private static final Matrix toXYZ =
+    //        new Matrix(0.4124,  0.3576, 0.1805,
+    //                0.2126, 0.7152, 0.0722,
+    //                0.0193, 0.1192, 0.9505);
+    //
+    //    private static final Matrix fromXYZ = toXYZ.inverse();
+    // LinearRGBを用いて変換するので、ここで行列は定義しない
 
     public XYZ XYZ() {
-        double[] returnVector = new double[3];
-        toXYZ.times(R,G,B, returnVector);
-//        System.out.printf("RGB:%f, %f, %f \n",R,G,B);
-//        System.out.printf("XYZ:%f, %f, %f \n",returnVector[0],returnVector[1],returnVector[2]);
-        return new XYZ(returnVector[0], returnVector[1], returnVector[2]);
+        XYZ xyz = new XYZ();
+        convertTo(xyz);
+        return xyz;
     }
 
 
-    private static final double defaultGamma = 2.2;
-
-    static private final double[] v = new double[3];
-
-    private final double correct(double x, double gamma) {
-        return Math.pow(x, gamma);
-    }
+    private static final double defaultGamma = 2.4;
 
     protected void convertFrom(XYZ xyz, double gamma) {
+        double[] v = new double[3];
         _LinearRGB.fromXYZ.times(xyz.X, xyz.Y, xyz.Z, v);
         double g = gamma;
-
-        //応急処置
-//        v[0] = Math.abs(v[0]);
-//        v[1] = Math.abs(v[1]);
-//        v[2] = Math.abs(v[2]);
-//        System.out.printf("convertFrom@_SRGB: v[0]:%f, v[1]:%f, v[2]:%f\n",v[0],v[1],v[2]);
-        _initialize(correct(v[0], 1/g), correct(v[1], 1/g), correct(v[2], 1/g));
+        for(int i=0; i<v.length; i++){
+            v[i] = v[i] > 0.0031308?
+                    Math.pow(v[i],1/g) * 1.055 - 0.055 : v[i] * 12.92;
+        }
+        _initialize(v[0],v[1], v[2]);
     }
 
     protected void convertFrom(XYZ xyz) {
@@ -71,7 +63,14 @@ abstract class _SRGB extends SimpleColorSpace {
 
     protected void convertTo(XYZ xyz, double gamma) {
         double g = gamma;
-        _LinearRGB.toXYZ.times(correct(R, g), correct(G, g), correct(B, g), v);
+        double[] rgb = new double[3];
+        rgb[0] = R; rgb[1] = G; rgb[2] = B;
+        double[] v = new double[3];
+        for(int i=0; i<rgb.length; i++){
+            rgb[i] = rgb[i] > 0.04045 ? Math.pow((rgb[i]+0.055)/1.055, g) : rgb[i]/12.92;
+        }
+        _LinearRGB.toXYZ.times(rgb[0],rgb[1],rgb[2], v);
+
         xyz.X = v[0]; xyz.Y = v[1]; xyz.Z = v[2];
     }
 
