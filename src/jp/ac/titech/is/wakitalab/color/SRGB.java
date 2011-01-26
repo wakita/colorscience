@@ -19,4 +19,9 @@ public final class SRGB extends _SRGB {
     public SRGB(XYZ c) {
         convertFrom(c);
     }
+
+    /* _定義するのはここでいいのかよく分からない。_ */
+    public SRGB getDichromatColor(VisionType t){
+        return LMS().getDichromatColor(t).SRGB();
+    }
 }

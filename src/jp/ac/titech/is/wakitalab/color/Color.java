@@ -24,9 +24,9 @@ import jp.ac.titech.is.wakitalab.math.*;
  */
 
 public abstract class Color {
-	
+
 	protected static XYZ nominalWhite;
-    
+
     // Execution of Colo::initialize depends on execution of Illuminant.initialization
     static void initialize() {
         nominalWhite = Illuminant.WhiteD65.XYZ();
@@ -34,29 +34,29 @@ public abstract class Color {
     }
 
 	/**
-	 * @param nominalWhite ê›íËÇ∑ÇÈ nominalWhiteÅB
+	 * @param nominalWhite ÔøΩ›íËÇ∑ÔøΩÔøΩ nominalWhiteÔøΩB
 	 */
 	public static void setNominalWhite(XYZ nominalWhite) {
 		Color.nominalWhite = nominalWhite;
 	}
 
 	/**
-	 * @return nominalWhite ÇñﬂÇµÇ‹Ç∑ÅB
+	 * @return nominalWhite ÔøΩÔøΩﬂÇÔøΩÔøΩ‹ÇÔøΩÔøΩB
 	 */
 	public static XYZ getNominalWhite() {
 		return nominalWhite;
 	}
-	
+
 	/**
 	 * Converts color representation from the current color space to CIE XYZ.
 	 */
-	
+
     abstract public XYZ XYZ();
-    
+
     /**
 	 * Converts color representation from the current color space to CIE XYZ.
 	 * Uniform color spaces such as CIELab and CIELuv requires nominal white.
-	 * 
+	 *
 	 * @param w
 	 *            Nominal white represented in the CIE XYZ color space.
 	 * @return
@@ -69,35 +69,35 @@ public abstract class Color {
 	 * Method to convert a color represented in current color space to CIE RGB.
 	 * Subclasses can override this method to offer more efficient conversion,
 	 * bypassing conversion to CIE XYZ.
-	 * 
+	 *
 	 * @return XYZ
 	 */
 
     public CIERGB RGB() {
         return CIERGB();
     }
-    
+
     public CIERGB CIERGB() {
         return new CIERGB(XYZ());
     }
-    
+
     public LinearRGB LinearRGB() {
         return new LinearRGB(XYZ());
     }
-    
+
     public SRGB SRGB() {
         return new SRGB(XYZ());
     }
-    
+
     public CIELab CIELab(XYZ nominalWhite) {
     	return new CIELab(XYZ(), nominalWhite);
     }
-    
+
     /**
 	 * Method to convert a color represented in current color space to CIE L<sup>*</sup>a<sup>*</sup>b<sup>*</sup>.
 	 * Subclasses can override this method to offer more efficient conversion,
 	 * bypassing conversion to CIE XYZ.
-	 * 
+	 *
 	 * @return RGB
 	 */
 
@@ -117,13 +117,13 @@ public abstract class Color {
      * Method to convert color represented in current color space to LMS.
      * Subclasses can override this method to offer more efficient conversion,
      * bypassing convertion to CIE XYZ.
-     * 
+     *
      * @return LMS
      */
     public LMS LMS() {
         return new LMS(XYZ());
     }
-    
+
     abstract protected void convertFrom(XYZ xyz);
     abstract protected void convertTo(XYZ xyz);
 
@@ -131,13 +131,13 @@ public abstract class Color {
 	 * Translate this color to other color space which specified by the type of
 	 * "c". This is an imperative API for the functional style color conversion
 	 * API.
-	 * 
+	 *
 	 * RGB c1 = new RGB(r, g, b); CIELab c2 = new CIELab(); c1.convert(c2);
-	 * 
+	 *
 	 * Caution: This method is NOT thread safe. Simultaneous conversion of two
 	 * colors by independent threads can be dangerous.
 	 */
-    
+
     static final XYZ xyz = new XYZ(0, 0, 0);
     public void convert(Color c) {
     	this.convertTo(xyz);
@@ -172,7 +172,7 @@ public abstract class Color {
      * @param Yn Luminance of the nominal white color (such as D65).
      * @return Lightness.
      */
-    
+
     public static final double lightnessLight(double Y, double Yn) {
         return M.cubert(Y / Yn);
     }
@@ -183,7 +183,7 @@ public abstract class Color {
 
     /**
 	 * Method to convert lightness into luminance; inverse of [f].
-	 * 
+	 *
 	 * @param L
 	 *            Lightness of the subject.
 	 * @param Yn
@@ -198,10 +198,10 @@ public abstract class Color {
         else
             return Yn * (f - 16.0 / 116.0) / 7.787;
     }
-    
+
     /**
      * An approximation of "luminance" method.
-     * 
+     *
      * @param L
      * @param Yn
      * @return
@@ -214,8 +214,15 @@ public abstract class Color {
     static double finv(double L, double Yn) {
 		return luminance(L, Yn);
 	}
-    
+
     static double finvLight(double L, double Yn) {
     	return luminanceLight(L, Yn);
     }
+
+    /**
+     *
+     *
+     *
+     *
+     */
 }
