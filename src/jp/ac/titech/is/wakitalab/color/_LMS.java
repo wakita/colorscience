@@ -9,11 +9,20 @@ import jp.ac.titech.is.wakitalab.math.Matrix;
 /**
  * @author Ken Wakita
  * @version Experimental, 2003/12/01
+ * 
+ * LMS represents a color in human cone fundamental space.
  */
+
 abstract class _LMS extends SimpleColorSpace {
 
+    /**
+     * L, M, and S elements of the cone fundamental values.
+     */
     public double L, M, S;
 
+    /* (non-Javadoc)
+     * @see jp.ac.titech.is.wakitalab.color.Color#LMS()
+     */
     public LMS LMS() { return (LMS)this; }
 
     /* _今記載されてるのは、RGBからXYZへの変換行列！！_ */
@@ -44,8 +53,13 @@ abstract class _LMS extends SimpleColorSpace {
             -0.431117, 1.206922, 0.0090020,
             0.040557, -0.019683, 0.486195);
     private static final Matrix toXYZ = fromXYZ.inverse();
-
 */
+    	/**
+    	 * Linear transformation from the color matching functions (Stiles and Burch, 1959) to the cone fundamentals.
+    	 * See Malacara, "Color Vision and Colorimetry," p. 145, formula (8.2).
+    	 * 
+    	 *  Bug: The proposed correction shown in formula (8.3) is yet to be supported.
+    	 */
     private static final Matrix toRGB =
         new Matrix(0.214808, 0.751035, 0.045156,
                 0.022882, 0.940534, 0.076827,
@@ -67,6 +81,9 @@ abstract class _LMS extends SimpleColorSpace {
         xyz.X = v[0]; xyz.Y = v[1]; xyz.Z = v[2];
     }
 
+    /* (non-Javadoc)
+     * @see jp.ac.titech.is.wakitalab.color.Color#RGB()
+     */
     public CIERGB RGB() {
         double r[] = toRGB.times(L, M, S);
         double max = Math.max(Math.max(r[0], r[1]), r[2]);
@@ -75,94 +92,4 @@ abstract class _LMS extends SimpleColorSpace {
         ciergb = new CIERGB(r[0] / max, r[1] / max, r[2] / max);
         return ciergb;
     }
-
-
-
-    /********************* _DichromatPlaneへの写像_ *********************/
-    /* _@shimamura から持ってきた謎の変数たち_ */
-    final static LMS gray = new LMS(0.1159786162144061,0.09482136320070213,0.05842422424151998);
-    public final static LMS[] anchor2deg = {
-        new LMS(1.1882E-01,  2.05398E-01,  5.16411E-01),
-        new LMS(9.92310E-01,  7.40291E-01,  1.75039E-04),
-        new LMS(1.63952E-01,  2.68063E-01,  2.90322E-01),
-        new LMS(9.30085E-02,  7.30255E-03,  0.0)};
-    private static LMS outerProduct(LMS a, LMS b){
-        return new LMS(
-                a.M * b.S - a.S * b.M,
-                a.S * b.L - a.L * b.S,
-                a.L * b.M - a.M * b.L);
-    }
-    static private LMS anchorForProtanAndDeutan = outerProduct(gray, anchor2deg[0]);
-    static private LMS anchorForProtanAndDeutan2 = outerProduct(gray, anchor2deg[1]);
-    static private LMS anchorForTritan= outerProduct(gray, anchor2deg[2]);
-    static private LMS anchorForTritan2= outerProduct(gray, anchor2deg[3]);
-    /* _ここまで_ */
-
-    public LMS getDichromatColor(VisionType type){
-        LMS returnLMS;
-        switch (type){
-        case Trichromat:
-            returnLMS = this.LMS();
-            break;
-        case Protanope:
-            returnLMS = convertToProtanopeColor();
-            break;
-        case Deuteranope:
-            returnLMS = convertToDeuteranopeColor();
-            break;
-        case Tritanope:
-            returnLMS = convertToTritanopeColor();
-            break;
-        default:
-            returnLMS = this.LMS();
-        break;
-        }
-        return returnLMS;
-    }
-
-    private LMS convertToProtanopeColor(){
-        LMS anchor = anchorForProtanAndDeutan;
-        LMS anchor2 = anchorForProtanAndDeutan2;
-        double[] v = new double[3];
-        LMS gray = _LMS.gray;
-        if(S * gray.M < M * gray.S)
-            v[0] = -(anchor2.M * M + anchor2.S * S) / anchor2.L;//575nm
-        else
-            v[0] = -(anchor.M * M + anchor.S * S) / anchor.L;//475nm
-        v[1] = M;
-        v[2] = S;
-        return new LMS(v[0],v[1],v[2]);
-    }
-
-    private LMS convertToDeuteranopeColor(){
-        LMS anchor = anchorForProtanAndDeutan;
-        LMS anchor2 = anchorForProtanAndDeutan2;
-        double[] v = new double[3];
-        LMS gray = _LMS.gray;
-        if(S * gray.L < L * gray.S)
-            v[1] = -(anchor2.L * L + anchor2.S * S) / anchor2.M;//575nm
-        else
-            v[1] = -(anchor.L * L + anchor.S * S) / anchor.M;//475nm
-        v[0] = L;
-        v[2] = S;
-        return new LMS(v[0],v[1],v[2]);
-    }
-
-    private LMS convertToTritanopeColor(){
-        LMS anchor = anchorForTritan;
-        LMS anchor2 = anchorForTritan2;
-        double[] v = new double[3];
-        LMS gray = _LMS.gray;
-        if(M * gray.L < L * gray.M)
-            v[2] = -(anchor2.M * M + anchor2.L * L) / anchor2.S;//660nm
-        else
-            v[2] = -(anchor.M * M + anchor.L * L) / anchor.S;//485nm
-        v[0] = L;
-        v[1] = M;
-        return new LMS(v[0],v[1],v[2]);
-    }
-
-
-
-
 }
