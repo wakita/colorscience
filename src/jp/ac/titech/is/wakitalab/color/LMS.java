@@ -20,7 +20,6 @@ public class LMS extends _LMS {
     
 	/* _ここまで_ */
 
-
     private static LMS outerProduct(LMS a, LMS b){
         return new LMS(
                 a.M * b.S - a.S * b.M,
@@ -38,13 +37,6 @@ public class LMS extends _LMS {
     		for (int i = 0; i < anchors.length; i++)
     			anchors[i] = outerProduct(gray, anchor2deg[i]);
     }
-
-    /*
-	static private LMS anchorForProtanAndDeutan = outerProduct(gray, anchor2deg[0]);
-	static private LMS anchorForProtanAndDeutan2 = outerProduct(gray, anchor2deg[1]);
-	static private LMS anchorForTritan= outerProduct(gray, anchor2deg[2]);
-	static private LMS anchorForTritan2= outerProduct(gray, anchor2deg[3]);
-	*/
 
 	/**
 	 * Construct a color represented in LMS color system.
@@ -127,20 +119,6 @@ public class LMS extends _LMS {
 		LMS anchor = anchors[an.ordinal()];
 		double l = - (anchor.M * M + anchor.S * S) / anchor.L;
 		return new LMS(l, M, S);
-
-		/*
-	    LMS anchor1 = anchorForProtanAndDeutan;
-	    LMS anchor2 = anchorForProtanAndDeutan2;
-	    double[] v = new double[3];
-	    LMS gray = LMS.gray;
-	    if(S * gray.M < M * gray.S)
-	        v[0] = -(anchor2.M * M + anchor2.S * S) / anchor2.L;//575nm
-	    else
-	        v[0] = -(anchor1.M * M + anchor1.S * S) / anchor1.L;//475nm
-	    v[1] = M;
-	    v[2] = S;
-	    return new LMS(v[0],v[1],v[2]);
-	    */
 	}
 
 	private LMS convertToDeuteranopeColor() {
@@ -148,19 +126,6 @@ public class LMS extends _LMS {
 		LMS anchor = anchors[an.ordinal()];
 		double m = -(anchor.L * L + anchor.S * S) / anchor.M;
 		return new LMS(L, m, S);
-
-		/*
-	    LMS anchor1 = anchorForProtanAndDeutan;
-	    LMS anchor2 = anchorForProtanAndDeutan2;
-	    double[] v = new double[3];
-	    if(S * gray.L < L * gray.S)
-	        v[1] = -(anchor2.L * L + anchor2.S * S) / anchor2.M; //575nm
-	    else
-	        v[1] = -(anchor1.L * L + anchor1.S * S) / anchor1.M; //475nm
-	    v[0] = L;
-	    v[2] = S;
-	    return new LMS(v[0],v[1],v[2]);
-	    */
 	}
 
 	private LMS convertToTritanopeColor() {
@@ -168,18 +133,5 @@ public class LMS extends _LMS {
 	    LMS anchor = anchors[an.ordinal()];
 	    double s = -(anchor.M * M + anchor.L * L) / anchor.S;
 	    return new LMS(L, M, s);
-
-	    /*
-	    double[] v = new double[3];
-	    LMS anchor1 = anchorForTritan;
-	    LMS anchor2 = anchorForTritan2;
-	    if (M * gray.L < L * gray.M)
-	        v[2] = -(anchor2.M * M + anchor2.L * L) / anchor2.S; //660nm
-	    else
-	        v[2] = -(anchor1.M * M + anchor1.L * L) / anchor1.S; //485nm
-	    v[0] = L;
-	    v[1] = M;
-	    return new LMS(v[0],v[1],v[2]);
-	    */
 	}
 }
