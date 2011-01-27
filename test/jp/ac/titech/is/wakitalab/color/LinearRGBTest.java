@@ -7,7 +7,7 @@ import java.util.*;
 import org.junit.*;
 
 
-public class LMSTest {
+public class LinearRGBTest {
 	Random rand = new Random();
 
 	private boolean similarEqual(double a, double b){
@@ -17,8 +17,10 @@ public class LMSTest {
 	private double r() { return rand.nextDouble(); }
 
 	@Test public void testConvertToFromXYZ() {
-		LMS lms = new LMS(r(), r(), r());
-		LMS lms2 = lms.XYZ().LMS();
-		assertTrue(lms2.equals(lms));
+		LinearRGB l_rgb = new LinearRGB(r(), r(), r());
+		LinearRGB l_rgb2 = l_rgb.XYZ().LinearRGB();
+		assertTrue(similarEqual(l_rgb.R, l_rgb2.R)
+				&& similarEqual(l_rgb.G, l_rgb2.G)
+				&& similarEqual(l_rgb.B, l_rgb2.B));
 	}
 }
