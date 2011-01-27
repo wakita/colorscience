@@ -28,11 +28,11 @@ public class LMS extends _LMS {
 			wavelen += step;
 		}
 	}
-	
+
 	private final boolean _eq(double x, double y) {
 	    return jp.ac.titech.is.wakitalab.math.M.equals(x, y);
 	}
-	
+
 	public boolean equals(LMS c) {
 	    return _eq(L, c.L) && _eq(M, c.M) && _eq(S, c.S);
 	}
@@ -47,9 +47,9 @@ public class LMS extends _LMS {
 
 	/* _ Color.javaでabstractになっているメソッドをここで実装している。Color <- SimpleColorSpace <- _LMS <- LMS _ */
 	public XYZ XYZ() {
-		// return RGB().XYZ();
 	    XYZ c = new XYZ();
 	    convertTo(c);
 	    return c;
 	}
+
 }
