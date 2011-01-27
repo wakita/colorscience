@@ -34,14 +34,14 @@ public abstract class Color {
     }
 
 	/**
-	 * @param nominalWhite �ݒ肷�� nominalWhite�B
+	 * @param nominalWhite
 	 */
 	public static void setNominalWhite(XYZ nominalWhite) {
 		Color.nominalWhite = nominalWhite;
 	}
 
 	/**
-	 * @return nominalWhite ��߂��܂��B
+	 * @return nominalWhite
 	 */
 	public static XYZ getNominalWhite() {
 		return nominalWhite;
