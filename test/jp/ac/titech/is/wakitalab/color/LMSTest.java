@@ -24,7 +24,7 @@ public class LMSTest {
 	@Test public void testDichromatConversion() {
 		JFrame frame = new JFrame("Dichromat View");
 		Container pane = frame.getContentPane();
-		pane.setLayout(new GridLayout(2,2));
+		pane.setLayout(new GridLayout(2, 2));
 
 		final int W = 256, H = 256;
 
@@ -38,17 +38,15 @@ public class LMSTest {
 				pix[i] = getInt(c.R, c.G, c.B);
 			}
 			canvas.setImage(W, H, pix);
+			canvas.setPreferredSize(new Dimension(W, H));
 			pane.add(canvas);
 		}
 
-		frame.setPreferredSize(new Dimension(W * 2 + 20, H * 2 + 20));
 		frame.pack();
 		frame.setVisible(true);
-		
-		System.out.print("Your input: ");
-		Scanner scan = new Scanner(System.in);
-		String s = scan.nextLine();
-		System.out.println(s);
+
+		assertEquals(JOptionPane.showConfirmDialog(null, "結果は満足のいくものですか？"),
+				JOptionPane.YES_OPTION);
 	}
 	
 	static int getInt(double x) {
