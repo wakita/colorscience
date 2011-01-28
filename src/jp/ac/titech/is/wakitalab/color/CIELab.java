@@ -46,4 +46,9 @@ public class CIELab extends _CIELab {
 	public CIELabLight CIELabLight() {
 		return new CIELabLight(L, a, b);
 	}
+	
+    @Override
+    public CIELab getDichromatColor(VisionType t){
+        return LMS().getDichromatColor(t).CIELab();
+    }
 }

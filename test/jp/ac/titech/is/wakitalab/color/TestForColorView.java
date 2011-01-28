@@ -33,7 +33,7 @@ public class TestForColorView {
                         srgb = new SRGB(1.0, 1.0, 1.0);
                         //                          srgb.setInt(0);
                     }
-                    pixel[i][j] = getInt(srgb.R,srgb.G,srgb.B);
+                    pixel[i][j] = srgb.getIntegerExpression();
                 }
             }
 
@@ -46,7 +46,7 @@ public class TestForColorView {
                             ((double)j)/(h/2),
                             1 - ((double)i)/w - ((double)j)/h ); //B成分が0〜1になるように気をつける
                     srgb = srgb.getDichromatColor(type);
-                    pixel[i][j] = getInt(srgb.R,srgb.G,srgb.B);
+                    pixel[i][j] = srgb.getIntegerExpression();
                 }
             }
 
@@ -63,32 +63,6 @@ public class TestForColorView {
                 System.exit(0);
             }
         });
-    }
-
-    /* _Vector3D@shimamuraから拝借。RGBをINTに直す_ */
-    static int getInt(double r, double g, double b){
-        int v1 = (int)(r * 255.0);
-        int v2 = (int)(g * 255.0);
-        int v3 = (int)(b * 255.0);
-        if(v1 < 0){
-            v1 = 0;
-        }
-        else if(v1 > 255){
-            v1 = 255;
-        }
-        if(v2 < 0){
-            v2 = 0;
-        }
-        else if(v2 > 255){
-            v2 = 255;
-        }
-        if(v3 < 0){
-            v3 = 0;
-        }
-        else if(v3 > 255){
-            v3 = 255;
-        }
-        return ( 0xff000000 | (v1 << 16) | (v2 << 8) | v3);
     }
 
 }

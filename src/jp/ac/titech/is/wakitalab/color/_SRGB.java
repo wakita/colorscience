@@ -25,24 +25,11 @@ abstract class _SRGB extends SimpleColorSpace {
         return String.format("SRGB(%1.2f, %1.2f, %1.2f)", R, G, B);
     }
 
-    //    //    public XYZ XYZ() {
-    //    //        return null;
-    //    //    }
-    //    /* _http://www.enjoy.ne.jp/~k-ichikawa/CIEXYZ_RGB.html より_ */
-    //    private static final Matrix toXYZ =
-    //        new Matrix(0.4124,  0.3576, 0.1805,
-    //                0.2126, 0.7152, 0.0722,
-    //                0.0193, 0.1192, 0.9505);
-    //
-    //    private static final Matrix fromXYZ = toXYZ.inverse();
-    // LinearRGBを用いて変換するので、ここで行列は定義しない
-
     public XYZ XYZ() {
         XYZ xyz = new XYZ();
         convertTo(xyz);
         return xyz;
     }
-
 
     private static final double defaultGamma = 2.4;
 

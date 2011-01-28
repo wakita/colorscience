@@ -35,4 +35,9 @@ public final class CIERGB extends _CIERGB {
     public CIERGB(XYZ c) {
         convertFrom(c);
     }
+    
+    @Override
+    public CIERGB getDichromatColor(VisionType t){
+        return LMS().getDichromatColor(t).CIERGB();
+    }
 }
