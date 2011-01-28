@@ -15,7 +15,7 @@ public class Gnuplot {
     public String imagePath;
     public String title = "なにかのテスト";
 
-    private java.io.PrintStream out;
+    java.io.PrintStream out;
 
     private static final String executable = "/opt/local/bin/gnuplot";
 
@@ -37,14 +37,10 @@ public class Gnuplot {
     }
 
     public void stop() {
-        process.destroy();
+        out.close();
+        try { process.waitFor(); } catch (InterruptedException e) {}
     }
     
-    public void cleanStop() {
-        if (imagePath != null) new File(imagePath).delete();
-        stop();
-    }
-
     public Gnuplot() {
         this(defaultTerminalType, null);
     }
@@ -54,7 +50,6 @@ public class Gnuplot {
     }
     
     public Gnuplot(String terminalType, String filename) {
-        System.out.printf("terminalType: %s, filename: %s\n", terminalType, filename);
         terminalType = terminalType == null ? Gnuplot.defaultTerminalType : terminalType;
         start();
         out.printf("set terminal %s\n", terminalType);
@@ -80,7 +75,7 @@ public class Gnuplot {
     }
 
     public void ylabel(String label) {
-        out.println("set ylabel \"" + label + "\"");
+        out.printf("set ylabel \"%s\"\n", label);
     }
     
     public void labels(String xlabel, String ylabel) {
@@ -107,9 +102,13 @@ public class Gnuplot {
     public void test(String message) {
         if (imagePath == null) throw new IllegalStateException("画像ファイルを生成していません。");
         
+        stop();
+        
         assertEquals(JOptionPane.showConfirmDialog(null, message + "\n結果は満足のいくものですか？", title,
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, new ImageIcon(imagePath)),
                 JOptionPane.YES_OPTION);
+        
+        if (imagePath != null) new File(imagePath).delete();
     }
     
     public void test() {

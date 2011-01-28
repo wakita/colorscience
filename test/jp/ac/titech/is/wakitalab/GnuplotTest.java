@@ -8,23 +8,16 @@ import org.junit.*;
 
 public class GnuplotTest {
     
-    Gnuplot gnuplot;
-
-    @After
-    public void tearDown() {
-        gnuplot.cleanStop();
-    }
-    
     @Test
     public void initializationTest() {
-        gnuplot = new Gnuplot();
+        Gnuplot gnuplot = new Gnuplot();
         assertTrue(true);
         gnuplot.stop();
     }
     
     @Test
     public void plotTest1() throws IOException {
-        gnuplot = Gnuplot.startGnuplotWithPNG();
+        Gnuplot gnuplot = Gnuplot.startGnuplotWithPNG();
         gnuplot.labels("X", "Y");
 
         gnuplot.beginPlot("sm csp t 'Y = sin(X)'");
@@ -34,8 +27,6 @@ public class GnuplotTest {
             gnuplot.plot(theta, Math.sin(theta));
         }
         gnuplot.endPlot();
-
-        gnuplot.flush();
 
         gnuplot.test();
     }
