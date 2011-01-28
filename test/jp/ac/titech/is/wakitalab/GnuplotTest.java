@@ -23,24 +23,20 @@ public class GnuplotTest {
     }
     
     @Test
-    public void plotTest1() {
-        try {
-            gnuplot = Gnuplot.startGnuplotWithPNG();
-            gnuplot.labels("X", "Y");
-            
-            gnuplot.beginPlot("sm csp t 'Y = sin(X)'");
-            final int N = 60;
-            for (int i = 0; i < N; i++) {
-                double theta = 2 * Math.PI * i / N;
-                gnuplot.plot(theta, Math.sin(theta));
-            }
-            gnuplot.endPlot();
+    public void plotTest1() throws IOException {
+        gnuplot = Gnuplot.startGnuplotWithPNG();
+        gnuplot.labels("X", "Y");
 
-            gnuplot.flush();
-            
-            gnuplot.test();
-        } catch (IOException e) {
-            e.printStackTrace();
+        gnuplot.beginPlot("sm csp t 'Y = sin(X)'");
+        final int N = 60;
+        for (int i = 0; i < N; i++) {
+            double theta = 2 * Math.PI * i / N;
+            gnuplot.plot(theta, Math.sin(theta));
         }
+        gnuplot.endPlot();
+
+        gnuplot.flush();
+
+        gnuplot.test();
     }
 }

@@ -13,6 +13,7 @@ public class Gnuplot {
     public java.lang.Process process;
     
     public String imagePath;
+    public String title = "なにかのテスト";
 
     private java.io.PrintStream out;
 
@@ -70,6 +71,7 @@ public class Gnuplot {
     }
 
     public void title(String title) {
+        this.title = title;
         out.printf("set title \"%s\"\n", title);
     }
 
@@ -101,12 +103,16 @@ public class Gnuplot {
     public void endPlot() {
         out.println("e");
     }
-    
-    public void test() {
+
+    public void test(String message) {
         if (imagePath == null) throw new IllegalStateException("画像ファイルを生成していません。");
         
-        assertEquals(JOptionPane.showConfirmDialog(null, "結果は満足のいくものですか？", "GnuplotTest::plotTest1",
+        assertEquals(JOptionPane.showConfirmDialog(null, message + "\n結果は満足のいくものですか？", title,
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, new ImageIcon(imagePath)),
                 JOptionPane.YES_OPTION);
+    }
+    
+    public void test() {
+        test("");
     }
 }
