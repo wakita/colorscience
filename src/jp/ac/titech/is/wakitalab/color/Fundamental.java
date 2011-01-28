@@ -36,9 +36,8 @@ public class Fundamental {
 		int w0 = step - mod, w1 = mod;
 		double eff0[] = efficiency[i], eff1[] = efficiency[i + 1], eff[] = new double[3];
 		
-		eff[0] = (w0 * eff0[0] + w1 * eff1[0]) / step;
-		eff[1] = (w0 * eff0[1] + w1 * eff1[1]) / step;
-		eff[2] = (w0 * eff0[2] + w1 * eff1[2]) / step;
+		for (int cone = 0; cone < eff.length; cone++)
+			eff[cone] = (w0 * eff0[cone] + w1 * eff1[cone]) / step;
 
 		return eff;
 	}
