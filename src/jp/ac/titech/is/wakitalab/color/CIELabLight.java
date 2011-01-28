@@ -69,4 +69,9 @@ public final class CIELabLight extends _CIELab {
 	public CIELab CIELab() {
 		return new CIELab(L, a, b);
 	}
+	
+	@Override //正しい実装か不明
+    public CIELab getDichromatColor(VisionType t){
+        return LMS().getDichromatColor(t).CIELab();
+    }
 }

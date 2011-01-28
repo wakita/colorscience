@@ -17,4 +17,9 @@ public class LinearRGB extends _LinearRGB {
     public LinearRGB(XYZ c) {
         convertFrom(c);
     }
+    
+    public LinearRGB getDichromatColor(VisionType t){
+        return LMS().getDichromatColor(t).LinearRGB();
+    }
+    
 }

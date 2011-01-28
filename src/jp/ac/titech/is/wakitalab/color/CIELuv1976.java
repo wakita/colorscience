@@ -36,4 +36,9 @@ public class CIELuv1976 extends _CIELuv1976 {
     public CIELuv1976(XYZ c) {
         this(c, nominalWhite);
     }
+    
+    @Override
+    public CIELuv1976 getDichromatColor(VisionType t){
+        return LMS().getDichromatColor(t).CIELuv1976();
+    }
 }

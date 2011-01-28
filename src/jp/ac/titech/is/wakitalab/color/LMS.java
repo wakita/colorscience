@@ -164,7 +164,7 @@ public class LMS extends _LMS {
 	}
 
 	private LMS convertToTritanopeColor() {
-		Anchors an = M * gray.L < L * gray.M ? Anchors.TRITANOPE_X : Anchors.TRITANOPE_Y;
+		Anchors an = M * gray.L > L * gray.M ? Anchors.TRITANOPE_X : Anchors.TRITANOPE_Y;
 	    LMS anchor = anchors[an.ordinal()];
 	    double s = -(anchor.M * M + anchor.L * L) / anchor.S;
 	    return new LMS(L, M, s);
@@ -182,4 +182,5 @@ public class LMS extends _LMS {
 	    return new LMS(v[0],v[1],v[2]);
 	    */
 	}
+	
 }

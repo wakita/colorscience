@@ -188,9 +188,7 @@ public class XYZ extends _XYZ {
     // D65_2 : (Xn = 95.053, Yn = 100.00, Zn = 108.900)
     // D65_10 : (Xn = 94.812, Yn = 100.00, Zn = 107.327)
 
-    /* _定義するのはここでいいのかよく分からない。_ */
     public XYZ getDichromatColor(VisionType t){
         return LMS().getDichromatColor(t).XYZ();
     }
-
 }

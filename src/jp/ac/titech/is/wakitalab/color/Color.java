@@ -218,11 +218,12 @@ public abstract class Color {
     static double finvLight(double L, double Yn) {
     	return luminanceLight(L, Yn);
     }
-
-    /**
-     *
-     *
-     *
-     *
+    
+    /*
+     * Any color space can be converted to a dichromat color space
+     * via LMS color space.
+     * @param t VisionType
+     * @return Color which can be substituded to the name of an inherited class.
      */
+    abstract Color getDichromatColor(VisionType t);
 }
