@@ -15,7 +15,7 @@ public class Gnuplot {
     public String imagePath;
     public String title = "なにかのテスト";
 
-    java.io.PrintStream out;
+    public java.io.PrintStream out;
 
     private static final String executable = "/opt/local/bin/gnuplot";
 
@@ -81,6 +81,19 @@ public class Gnuplot {
     public void labels(String xlabel, String ylabel) {
         xlabel(xlabel); ylabel(ylabel);
     }
+    
+    public void xrange(String range) {
+        out.printf("set xrange %s\n", range);
+    }
+    
+    public void yrange(String range) {
+        out.printf("set yrange %s\n", range);
+    }
+    
+    public void ranges(String xrange, String yrange) {
+        xrange(xrange);
+        yrange(yrange);
+    }
 
     public void beginPlot() {
         out.println("set grid");
@@ -100,6 +113,8 @@ public class Gnuplot {
     }
 
     public void test(String message) {
+        if (DEBUG) return;
+        
         if (imagePath == null) throw new IllegalStateException("画像ファイルを生成していません。");
         
         stop();
