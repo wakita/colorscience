@@ -9,6 +9,14 @@ package jp.ac.titech.is.wakitalab.color;
  */
 
 public abstract class Stimulus {
+	
+	public static double lumensOfWatts(double w) {
+		return 683 * w;
+	}
+	
+	public static double wattsOfLumens(double l) {
+		return l / 638;
+	}
 
 	interface Iterator {
 
