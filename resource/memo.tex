@@ -1,0 +1,147 @@
+\documentclass [a4paper,fleqn] {jarticle}
+
+\usepackage {amsmath}
+
+\newcommand\V[1]{\ensuremath {\boldsymbol {#1}}}
+\newcommand\M[1]{\ensuremath {\boldsymbol {#1}}}
+
+\begin {document}
+
+\section* {Chapter 1: The Nature of Color}
+
+\subsection* {1.4: Some radiometric and photometric units}
+
+\emph {Irradiance --- 放射照度} ($\bar W$) is the total integrated radiant flux for all wavelengths, in watts, per unit area falling on an illuminated body:
+\[ \bar W = \frac {\mathrm {d}\phi_R} {\mathrm {d}A}, \]
+where $\phi_R$ is for \emph {radiant flux --- 放射束} and $A$ for area.
+
+The \emph {spectral irradiance --- 分光放射照度} ($W(\lambda)$) is related to the irradiance:
+\[ \bar W = \int_{-\infty}^\infty W(\lambda) \mathrm {d}\lambda \]
+
+The \emph {radiance --- 放射輝度} ($\bar P$) of a luminous surface:
+\[ \bar P = \frac {\text {radiant flux per steradian}} {\text {perceived area}}
+          = \frac {1} {cos \theta}
+            \frac {\mathrm d^2 \phi_R} {\mathrm d A \mathrm d \Omega} \]
+
+The \emph {spectral radiance --- 分光放射輝度} ($P(\lambda)$), defined as the radiance per unit wavelength interval, is related to the radiance $\bar P$ by:
+\[ \bar P = \int_{-\infty}^\infty P(\lambda) \mathrm d\lambda \]
+
+When the light enters the eye, a \emph {luminous stimulus} is produced.  The \emph {luminous flux --- 光束} ($\phi_L$) is the equivalent of the radiant flux, but evaluated according to the magnitude of the lumious stimulus it produces, measured in lumens.
+
+\[ \bar L = \frac {\text {luminous flux per steradian}} {\text {perceived area}}
+          = \frac {1} {cos \theta}
+            \frac {\mathrm d^2 \phi_L} {\mathrm d A \mathrm d \Omega} \]
+
+The \emph {spectral luminance --- 分光輝度} ($\L(\lambda)$) is related to the luminance $\bar L$ by:
+
+\[ \bar L = \int_{-\infty}^\infty L(\lambda) \mathrm d\lambda \]
+
+The \emph {brightness --- 明度} is more subjective term than the luminance or the lightness.
+
+The \emph {(spectral) luminous efficiency --- 発光効率} ($\bar \sigma(\lambda)$)\footnote {Spectral luminous efficiency is also known as \emph {luminous sensitivity}.} is defined by the ratio of the (spectral) luminance to the (spectral) radiance:
+%
+\begin {align*}
+  \bar \sigma &= L/P \\
+  \sigma(\lambda) &= L(\lambda)/P(\lambda)
+\end {align*}
+
+\begin {itemize}
+\item Spectral luminous efficiency has a peak value located at a wavelength of 555 nm.
+\item One watt of radiant energy at the wavelength of 555 nm is equivalent to 683 lumens.
+\end {itemize}
+
+The \emph {relative spectral luminous efficiency --- 相対分光発光効率？} ($V(\lambda)$) is defined as the luminous efficiency divided by its peak value at a wavelength of 555 nm.
+%
+\[ \sigma(\lambda) = 683 V(\lambda) \]
+
+\emph {Luminance --- 輝度} of a polychromatic light source ($\bar L$):
+%
+\[ \bar L = \int_{-\infty}^\infty \sigma(\lambda)P(\lambda) \mathrm d\lambda
+          = 683 \int_{-\infty}^\infty V(\lambda)P(\lambda) \mathrm d\lambda \]
+
+The \emph {luminous efficiency of a polychromatic light source} can be shown:
+%
+\[ \bar \sigma =
+   \bar L / \bar R =
+   \frac {\int_{-\infty}^\infty \sigma(\lambda)P(\lambda) \mathrm d\lambda}
+         {\int_{-\infty}^\infty P(\lambda) \mathrm d\lambda} =
+   683
+   \frac {\int_{-\infty}^\infty V(\lambda)P(\lambda) \mathrm d\lambda}
+         {\int_{-\infty}^\infty P(\lambda) \mathrm d\lambda} \]
+
+
+\pagebreak
+
+\section* {Chapter 3: Trichromatic Theory}
+
+\subsection* {3.1: Grassmann laws}
+
+\subsection* {3.2: Maxwell triangle}
+
+$r-g-b$
+
+\subsection* {3.3: Color-matching experiments}
+
+To begin the color-matching procedure, the spectrally pure reference field is set to a red color ($\lambda =$ 700nm).  Then the wavelength in the reference field is decreased in constant steps $\Delta \lambda$, preserving the same constant radiance $P_{\mathit {Ref}}$ for all wavelength.
+
+Radiance $L_{\mathit {Ref}}(\lambda)$:
+%
+\[ L_{\mathit {Ref}}(\lambda) = 683 P_{\mathit {Ref}}V(\lambda). \]
+
+The three luminances, $L_r(\lambda)$, $L_g(\lambda)$, $L_b(\lambda)$.
+
+\begin {align*}
+  L_r(\lambda) &= 683 P_r(\lambda)V(\lambda) \\
+  L_g(\lambda) &= 683 P_g(\lambda)V(\lambda) \\
+  L_b(\lambda) &= 683 P_b(\lambda)V(\lambda)
+\end {align*}
+%
+where
+\begin {itemize}
+\item $L_r(\lambda)$, $L_g(\lambda)$, $L_b(\lambda)$ are luminances,
+\item $P_r(\lambda)$, $P_g(\lambda)$, $P_b(\lambda)$ are radiances, and
+\item $V(\lambda)$ is the relative photopic luminous efficiency of the eye.
+\end {itemize}
+
+The total luminance of $L_{\mathit {Mch}}(\lambda)$:
+
+\begin {align*}
+  L_{\mathit {Mch}}(\lambda)
+    &= L_r(\lambda) + L_g(\lambda) + L_b(\lambda)
+    &= 683 (P_r(\lambda)V(\lambda) +
+            P_g(\lambda)V(\lambda) +
+            P_b(\lambda)V(\lambda))
+\end {align*}
+
+\subsection* {4.1 The CIE color system}
+
+\[ \V {xyz} = \M {A} \cdot \V {rgb} \]
+
+\subsection* {4.2 Color-matching functions $\bar {x}(\lambda)$, $\bar {y}(\lambda)$, $\bar {z}(\lambda)$}
+
+\begin {enumerate}
+
+\item The function $\bar y(\lambda)$ should be equal to the luminosity function $V(\lambda)$ of the eye.
+%
+\[ \bar y(\lambda) = V(\lambda) \]
+
+\item Constant energy of white, $P(\lambda) = 1$, should have equal values for the three tristimuli.
+
+\item The line joining points X and Y in Figure 3.8 be tangent to the curve on the red side.
+
+\item $\bar y$-axis must be tangent to the curve, so that no value of $\bar x(\lambda)$ is negative.
+
+\end {enumerate}
+
+\[ \V{xyz} =
+   \begin {pmatrix}
+     2.76888 & 1.75175 & 1.13016 \\
+     1       & 4.59070 & 0.06010 \\
+     0       & 0.05651 & 5.59427
+   \end {pmatrix} \V{rgb} \]
+
+\subsection* {4.3 Tristimulus values $X$, $Y$, $Z$}
+
+\[ \V{XYZ} = \int_0^\infty P(\lambda)\V {xyz}(\lambda) \mathrm {d}\lambda \]
+
+\end {document}
