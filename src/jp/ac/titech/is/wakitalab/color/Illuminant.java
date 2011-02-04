@@ -120,6 +120,8 @@ public class Illuminant extends PolychromaticStimulus {
 		071.6, 063.9, 065.1, 068.1, 056.4, 064.2,
 		069.2, 058.6, 042.6, 061.4
 	});
+	
+	public static final Illuminant EQ_ENERGY = null;
     
     public static final LMS WhiteA = new LMS(Illuminant.A);
     public static final LMS WhiteB = new LMS(Illuminant.B);
