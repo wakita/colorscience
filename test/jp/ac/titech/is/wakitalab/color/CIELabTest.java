@@ -34,14 +34,14 @@ public class CIELabTest {
 
     public void test(int f) {
         gnuplot.title("Chromacity diagram for the CIE L^*a^*b^* color space");
-        gnuplot.out.println("set xrange [-400:400]");
-        gnuplot.out.println("set yrange [-400:400]");
-        gnuplot.out.println("set zrange [0:110]");
-        gnuplot.out.println("splot '-'");
+        gnuplot.println("set xrange [-400:400]");
+        gnuplot.println("set yrange [-400:400]");
+        gnuplot.println("set zrange [0:110]");
+        gnuplot.println("splot '-'");
         CMF cmf = CMF.fundamentals2deg;
         for (int l = cmf.low; l <= cmf.high; l += cmf.step) {
             CIELab c = cmf.RGB(l).CIELab();
-            gnuplot.out.println(c.L + ", " + c.a + ", " + c.b);
+            gnuplot.println(c.L + ", " + c.a + ", " + c.b);
         }
         gnuplot.endPlot();
         gnuplot.flush();
@@ -69,23 +69,23 @@ public class CIELabTest {
 		*/
 
     	gnuplot.title("RGB surface projected on the CIEL^*a^*b^* color space.");
-    	gnuplot.out.println("splot '-'");
+    	gnuplot.println("splot '-'");
     	for (int i = 0; i <= 10; i += 1) {
     		double x = 0.1 * i;
     		for (int j = 0; j <= 10; j += 1) {
     			double y = 0.1 * j;
     			CIELab c = new CIERGB(x, y, 0).CIELab();
-				gnuplot.out.println(c.L + ", " + c.a + ", " + c.b);
+				gnuplot.println(c.L + ", " + c.a + ", " + c.b);
 //				c = new RGB(x, y, 1).CIELab();
 //				gnuplot.println(c.L + ", " + c.a + ", " + c.b);
 				
 				c = new CIERGB(0, x, y).CIELab();
-				gnuplot.out.println(c.L + ", " + c.a + ", " + c.b);
+				gnuplot.println(c.L + ", " + c.a + ", " + c.b);
 //				c = new RGB(1, x, y).CIELab();
 //				gnuplot.println(c.L + ", " + c.a + ", " + c.b);
 				
 				c = new CIERGB(y, 0, x).CIELab();
-				gnuplot.out.println(c.L + ", " + c.a + ", " + c.b);
+				gnuplot.println(c.L + ", " + c.a + ", " + c.b);
 //				c = new RGB(y, 1, x).CIELab();
 //				gnuplot.println(c.L + ", " + c.a + ", " + c.b);
     		}
