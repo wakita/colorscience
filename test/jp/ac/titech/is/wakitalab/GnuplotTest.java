@@ -19,7 +19,7 @@ public class GnuplotTest {
     public void plotTest1() throws IOException {
         Gnuplot gnuplot = Gnuplot.startGnuplotWithPNG();
         gnuplot.labels("X", "Y");
-        gnuplot.out.println("set size square");
+        gnuplot.println("set size square");
 
         gnuplot.beginPlot("sm csp t 'Y = sin(X)'");
         final int N = 60;

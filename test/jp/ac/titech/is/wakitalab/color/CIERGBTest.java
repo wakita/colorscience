@@ -17,7 +17,7 @@ public class CIERGBTest {
 	@Test
 	public void colorMatchingFunction() throws IOException {
 	    Gnuplot gnuplot = Gnuplot.startGnuplotWithPNG();
-        gnuplot.out.println("set grid");
+        gnuplot.println("set grid");
 		gnuplot.title("Color-matching functions r-g-b for a 2-deg field (CIE, 1931).");
 		gnuplot.xlabel("Wavelength (nm)");
 		gnuplot.beginPlot("sm csp t 'Red', '-' sm csp t 'Green', '-' sm csp t 'Blue'");
@@ -35,7 +35,7 @@ public class CIERGBTest {
 	@Test
 	public void chromaticityCoordinates() throws IOException {
         Gnuplot gnuplot = Gnuplot.startGnuplotWithPNG();
-        gnuplot.out.println("set grid");
+        gnuplot.println("set grid");
 		gnuplot.title("Chromacity coordinates r-g-b for spectrally pure colors for a 2-deg field (CIE, 1931)");
 		gnuplot.xlabel("Wavelength (nm)");
 		gnuplot.beginPlot("sm csp t 'Red', '-' sm csp t 'Green', '-' sm csp t 'Blue'");
@@ -66,12 +66,12 @@ public class CIERGBTest {
 	@Test
 	public void chromaticityDiagram() throws IOException {
 	    Gnuplot gnuplot = Gnuplot.startGnuplotWithPNG();
-	    gnuplot.out.println("set grid");
+	    gnuplot.println("set grid");
 
 		gnuplot.title("A chromaticity diagram for r vs. g.");
 		gnuplot.xlabel("r");
 		gnuplot.ylabel("g");
-		gnuplot.out.println("xrange [-2.0:1.5]");
+		gnuplot.println("xrange [-2.0:1.5]");
 		gnuplot.beginPlot();
 		CMF cmf = CMF.fundamentals2deg;
 		for (int l = cmf.low; l <= cmf.high; l += cmf.step) {
@@ -87,26 +87,26 @@ public class CIERGBTest {
 	@Test
 	public void cube() throws IOException {
 	    Gnuplot gnuplot = Gnuplot.startGnuplotWithPNG();
-	    gnuplot.out.println("set grid");
+	    gnuplot.println("set grid");
 
 		gnuplot.title("RGB surface.");
-		gnuplot.out.println("splot '-'");
+		gnuplot.println("splot '-'");
 		for (int i = 0; i <= 10; i += 1) {
 			double x = 0.1 * i;
 			for (int j = 0; j <= 10; j += 1) {
 				double y = 0.1 * j;
 				CIERGB c = new CIERGB(x, y, 0);
-				gnuplot.out.println(c.R + ", " + c.G + ", " + c.B);
+				gnuplot.println(c.R + ", " + c.G + ", " + c.B);
 //				c = new RGB(x, y, 1);
 //				gnuplot.println(c.R + ", " + c.G + ", " + c.B);
 				
 				c = new CIERGB(0, x, y);
-				gnuplot.out.println(c.R + ", " + c.G + ", " + c.B);
+				gnuplot.println(c.R + ", " + c.G + ", " + c.B);
 //				c = new RGB(1, x, y);
 //				gnuplot.println(c.R + ", " + c.G + ", " + c.B);
 				
 				c = new CIERGB(y, 0, x);
-				gnuplot.out.println(c.R + ", " + c.G + ", " + c.B);
+				gnuplot.println(c.R + ", " + c.G + ", " + c.B);
 //				c = new RGB(y, 1, x);
 //				gnuplot.println(c.R + ", " + c.G + ", " + c.B);
 			}

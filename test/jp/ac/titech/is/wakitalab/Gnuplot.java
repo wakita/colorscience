@@ -15,7 +15,11 @@ public class Gnuplot {
     public String imagePath;
     public String title = "なにかのテスト";
 
-    public java.io.PrintStream out;
+    private java.io.PrintStream out;
+    
+    public void prnt(Object ...args) { out.print(args); }
+    public void println(Object ... args) { out.println(args); }
+    public void printf(String format, Object ... args) { out.printf(format, args); }
 
     private static final String executable = "/opt/local/bin/gnuplot";
 

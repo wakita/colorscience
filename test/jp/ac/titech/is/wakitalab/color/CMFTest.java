@@ -54,7 +54,7 @@ public class CMFTest {
         gnuplot.title("A chromaticity diagram for r vs. g.");
         gnuplot.labels("r", "g");
         gnuplot.ranges("[-2.0:1.5]", "[-0.5:3.0]");
-        gnuplot.out.println("set size square");
+        gnuplot.println("set size square");
         
         gnuplot.beginPlot();
         CMF cmf = CMF.chromaticity2deg;
